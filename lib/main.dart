@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
+        primaryColor: Colors.green,
         accentColor: Colors.green,
+        errorColor: Colors.red,
         appBarTheme: AppBarTheme(),
       ),
       home: MyHomePage(),
