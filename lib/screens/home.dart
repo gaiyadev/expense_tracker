@@ -1,7 +1,16 @@
-import 'package:expense_tracker/transaction.dart';
+import 'package:expense_tracker/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String title;
+  String amount;
+  TextEditingController controller;
   final List<Transaction> transactions = [
     Transaction(
       id: '1',
@@ -25,7 +34,6 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: double.infinity,
@@ -34,6 +42,50 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
               child: Text(
                 'CHART',
+              ),
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      onChanged: (value) {
+                        title = value;
+                      },
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        labelText: 'Title',
+                      ),
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        amount = value;
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Amount',
+                      ),
+                    ),
+                    RaisedButton(
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {});
+                        print(amount);
+                        print(title);
+                      },
+                      child: Text(
+                        'Add Transaction',
+                        style: TextStyle(
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -47,7 +99,7 @@ class MyHomePage extends StatelessWidget {
                       child: Container(
                         margin: EdgeInsets.symmetric(
                           vertical: 10.0,
-                          horizontal: 50.0,
+                          horizontal: 40.0,
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -55,7 +107,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          tx.amount.toString(),
+                          'NGN: ${tx.amount}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,
@@ -69,16 +121,18 @@ class MyHomePage extends StatelessWidget {
                         Text(
                           tx.title,
                           style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat.yMMMd().format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               );
