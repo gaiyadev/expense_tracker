@@ -31,7 +31,7 @@ class Chart extends StatelessWidget {
     return groupTransactionValue.fold(0.0, (sum, item) {
       return sum + item['amount'];
     });
-  }
+  } 
 
   @override
   Widget build(BuildContext context) {

@@ -9,10 +9,9 @@ class TransactionList extends StatelessWidget {
       {@required this.transactions, @required this.deleteTransaction});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 450.0,
-      child: transactions.isEmpty
-          ? Column(
+    return transactions.isEmpty
+        ? LayoutBuilder(builder: (ctx, contraints) {
+            return Column(
               children: [
                 Text(
                   'No item added yet',
@@ -22,59 +21,58 @@ class TransactionList extends StatelessWidget {
                   height: 15.0,
                 ),
                 Container(
-                  height: 200.0,
+                  height: contraints.maxHeight * 0.6,
                   child: Image.asset(
                     'image/waiting.png',
                     fit: BoxFit.cover,
                   ),
                 ),
               ],
-            )
-          : ListView.builder(
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 5.0,
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30.0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: FittedBox(
-                          child: Text(
-                            'NGN: ${transactions[index].amount.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ),
+            );
+          })
+        : ListView.builder(
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 5.0,
+                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: FittedBox(
+                        child: Text(
+                          'NGN: ${transactions[index].amount.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.white,
                           ),
                         ),
                       ),
                     ),
-                    title: Text(
-                      transactions[index].title,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      DateFormat().add_yMMMd().format(transactions[index].date),
-                    ),
-                    trailing: IconButton(
-                      onPressed: () =>
-                          deleteTransaction(transactions[index].id),
-                      icon: Icon(
-                        Icons.delete,
-                        color: Theme.of(context).errorColor,
-                      ),
+                  ),
+                  title: Text(
+                    transactions[index].title,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                );
-              },
-              itemCount: transactions.length,
-            ),
-    );
+                  subtitle: Text(
+                    DateFormat().add_yMMMd().format(transactions[index].date),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () => deleteTransaction(transactions[index].id),
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                  ),
+                ),
+              );
+            },
+            itemCount: transactions.length,
+          );
   }
 }
