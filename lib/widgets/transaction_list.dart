@@ -5,10 +5,13 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTransaction;
-  TransactionList(
-      {@required this.transactions, @required this.deleteTransaction});
+  TransactionList({
+    @required this.transactions,
+    @required this.deleteTransaction,
+  });
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return transactions.isEmpty
         ? LayoutBuilder(builder: (ctx, contraints) {
             return Column(
@@ -62,13 +65,30 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat().add_yMMMd().format(transactions[index].date),
                   ),
-                  trailing: IconButton(
-                    onPressed: () => deleteTransaction(transactions[index].id),
-                    icon: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
+                  trailing: mediaQuery.size.width > 460
+                      ? FlatButton.icon(
+                          color: Colors.green,
+                          onPressed: () =>
+                              deleteTransaction(transactions[index].id),
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                          label: Text(
+                            'Delete',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () =>
+                              deleteTransaction(transactions[index].id),
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                        ),
                 ),
               );
             },

@@ -46,76 +46,83 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              TextField(
-                onSubmitted: (_) => submitData(),
-                keyboardType: TextInputType.text,
-                controller: titleController,
-                // onChanged: (value) {
-                //   title = value;
-                // },
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                ),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                controller: amountController,
-                onSubmitted: (_) => submitData(),
-                // onChanged: (value) {
-                //   amount = value;
-                // },
-                decoration: InputDecoration(
-                  labelText: 'Amount',
-                ),
-              ),
-              Container(
-                height: 70.0,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        _selectedDate == null
-                            ? 'Choose Date'
-                            : 'Picked date  ${DateFormat.yMd().format(_selectedDate)}',
-                      ),
-                    ),
-                    SizedBox(
-                      width: 4.0,
-                    ),
-                    RaisedButton(
-                      color: Colors.white,
-                      onPressed: _percentDataPicker,
-                      child: Text(
-                        'Choose Date',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              RaisedButton(
-                textColor: Colors.white,
-                color: Colors.green,
-                onPressed: submitData,
-                child: Text(
-                  'Add Transaction',
-                  style: TextStyle(
-                    color: Colors.white,
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+              top: 10.0,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextField(
+                  onSubmitted: (_) => submitData(),
+                  keyboardType: TextInputType.text,
+                  controller: titleController,
+                  // onChanged: (value) {
+                  //   title = value;
+                  // },
+                  decoration: InputDecoration(
+                    labelText: 'Title',
                   ),
                 ),
-              ),
-            ],
+                TextField(
+                  keyboardType: TextInputType.number,
+                  controller: amountController,
+                  onSubmitted: (_) => submitData(),
+                  // onChanged: (value) {
+                  //   amount = value;
+                  // },
+                  decoration: InputDecoration(
+                    labelText: 'Amount',
+                  ),
+                ),
+                Container(
+                  height: 70.0,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          _selectedDate == null
+                              ? 'Choose Date'
+                              : 'Picked date  ${DateFormat.yMd().format(_selectedDate)}',
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4.0,
+                      ),
+                      RaisedButton(
+                        color: Colors.white,
+                        onPressed: _percentDataPicker,
+                        child: Text(
+                          'Choose Date',
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                RaisedButton(
+                  textColor: Colors.white,
+                  color: Colors.green,
+                  onPressed: submitData,
+                  child: Text(
+                    'Add Transaction',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
