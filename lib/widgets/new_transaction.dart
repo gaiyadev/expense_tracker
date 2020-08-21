@@ -1,3 +1,6 @@
+import 'package:expense_tracker/widgets/adaptive_btn.dart';
+import 'package:expense_tracker/widgets/adaptive_flat_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -96,31 +99,18 @@ class _NewTransactionState extends State<NewTransaction> {
                       SizedBox(
                         width: 4.0,
                       ),
-                      RaisedButton(
-                        color: Colors.white,
-                        onPressed: _percentDataPicker,
-                        child: Text(
-                          'Choose Date',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      AdaptiveFlatButton(
+                        text: 'choose Date',
+                        handler: _percentDataPicker,
                       ),
                     ],
                   ),
                 ),
-                RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.green,
-                  onPressed: submitData,
-                  child: Text(
-                    'Add Transaction',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                //...,
+                AdaptiveBTN(
+                  text: 'Add Transaction',
+                  submitHandler: submitData,
+                )
               ],
             ),
           ),
