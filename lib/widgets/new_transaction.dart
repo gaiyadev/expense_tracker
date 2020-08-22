@@ -70,7 +70,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   // onChanged: (value) {
                   //   title = value;
                   // },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Title',
                   ),
                 ),

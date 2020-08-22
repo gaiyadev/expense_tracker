@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           )
         : AppBar(
-            title: Text('Expense Tracker'),
+            title: const Text('Expense Tracker'),
             actions: [
               IconButton(
                 icon: Icon(Icons.add),
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('show Chart'),
+                  const Text('show Chart'),
                   Switch.adaptive(
                       activeColor: Colors.green,
                       value: _showChart,

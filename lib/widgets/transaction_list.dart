@@ -74,7 +74,7 @@ class TransactionList extends StatelessWidget {
                             Icons.delete,
                             color: Theme.of(context).errorColor,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Delete',
                             style: TextStyle(
                               color: Colors.white,
